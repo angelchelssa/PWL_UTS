@@ -18,9 +18,11 @@ class StokResource extends Resource
 {
     protected static ?string $model = Stok::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedArchiveBox;
 
     protected static ?string $recordTitleAttribute = 'Stok';
+
+    protected static ?string $navigationLabel = "Stok";
 
     public static function form(Schema $schema): Schema
     {
