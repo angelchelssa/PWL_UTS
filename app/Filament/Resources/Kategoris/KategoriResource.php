@@ -18,9 +18,11 @@ class KategoriResource extends Resource
 {
     protected static ?string $model = Kategori::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedArchiveBox;
 
     protected static ?string $recordTitleAttribute = 'Kategori';
+    
+    protected static ?string $navigationLabel = "kategori";
 
     public static function form(Schema $schema): Schema
     {
