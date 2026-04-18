@@ -13,7 +13,7 @@ class PenjualansTable
     {
         return $table
             ->columns([
-                //
+                
             ])
             ->filters([
                 //
