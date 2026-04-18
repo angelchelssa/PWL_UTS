@@ -24,11 +24,6 @@ class UsersTable
                     ->searchable()
                     ->sortable(),
 
-                TextColumn::make('level.level_nama')
-                    ->label('Level')
-                    ->badge()
-                    ->sortable(),
-
                 TextColumn::make('email')
                     ->label('Email')
                     ->searchable()

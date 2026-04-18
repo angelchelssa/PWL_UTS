@@ -5,6 +5,7 @@ namespace App\Filament\Resources\Users\Schemas;
 use Filament\Schemas\Schema;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
+use Illuminate\Support\Facades\DB;
 
 class UserForm
 {
@@ -12,18 +13,11 @@ class UserForm
     {
         return $schema
             ->components([
-                Select::make('level_id')
-                    ->label('Level')
-                    ->relationship('level', 'level_nama')
-                    ->searchable()
-                    ->preload()
-                    ->required(),
-
+                
                 TextInput::make('username')
                     ->label('Username')
                     ->required()
-                    ->maxLength(20)
-                    ->unique(ignoreRecord: true),
+                    ->maxLength(20),
 
                 TextInput::make('nama')
                     ->label('Nama Lengkap')
@@ -34,8 +28,7 @@ class UserForm
                     ->label('Password')
                     ->password()
                     ->revealable()
-                    ->maxLength(255)
-                    ->dehydrateStateUsing(fn ($state) => filled($state) ? bcrypt($state) : null)
+                    ->dehydrateStateUsing(fn ($state) => bcrypt($state))
                     ->dehydrated(fn ($state) => filled($state))
                     ->required(fn (string $operation) => $operation === 'create'),
             ]);
