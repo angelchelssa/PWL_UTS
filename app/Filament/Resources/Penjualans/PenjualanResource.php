@@ -13,20 +13,34 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use UnitEnum;
 
 class PenjualanResource extends Resource
 {
     protected static ?string $model = Penjualan::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedArchiveBox;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedDocument;
 
-    protected static ?string $recordTitleAttribute = 'Penjualan';
-    
+    protected static ?string $recordTitleAttribute = 'penjualan_kode';
+
     protected static ?string $navigationLabel = "Penjualan";
+
+    public static function getPluralLabel(): string
+    {
+        return 'Penjualan';
+    }
+
+    protected static ?int $navigationSort = 6;
+
+    protected static string|UnitEnum|null $navigationGroup = 'Transaksi';
 
     public static function form(Schema $schema): Schema
     {
-        return PenjualanForm::configure($schema);
+        $record = null;
+        if (function_exists('request') && request()->route('record')) {
+            $record = Penjualan::find(request()->route('record'));
+        }
+        return PenjualanForm::configure($schema, $record);
     }
 
     public static function table(Table $table): Table
