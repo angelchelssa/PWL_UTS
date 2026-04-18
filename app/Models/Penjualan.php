@@ -31,6 +31,11 @@ class Penjualan extends Model
         return $this->hasMany(PenjualanDetail::class, 'penjualan_id', 'penjualan_id');
     }
 
+    public function details()
+    {
+        return $this->hasMany(PenjualanDetail::class, 'penjualan_id', 'penjualan_id');
+    }
+
     public function getTotalAttribute()
     {
         return $this->detail->sum(fn($d) => $d->harga * $d->jumlah);

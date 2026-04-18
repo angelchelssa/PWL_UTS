@@ -23,14 +23,11 @@ class PenjualansTable
                     ->searchable(),
                 TextColumn::make('details.barang.barang_nama')
                     ->label('Barang')
-                    ->bulleted()
                     ->searchable(),
                 TextColumn::make('details.jumlah')
-                    ->label('Jumlah')
-                    ->bulleted(),
+                    ->label('Jumlah'),
                 TextColumn::make('details.harga')
                     ->label('Harga')
-                    ->bulleted()
                     ->money('IDR'),
                 TextColumn::make('penjualan_tanggal')
                     ->dateTime()
